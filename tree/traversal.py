@@ -67,3 +67,43 @@ class Solution(object):
                 stack.append(cur.left)
                 
         return res
+
+
+
+# 3. Post order:
+
+# can be done in two ways: one, strictly follow the concept of postorder traversal; 
+# second is to reverse the result of a **modified** pre-order traversal
+
+
+# https://discuss.leetcode.com/topic/17540/share-my-two-python-iterative-solutions-post-order-and-modified-preorder-then-reverse ##
+# also, check this detailed tutorial using 2 stacks:
+# http://www.geeksforgeeks.org/iterative-postorder-traversal/
+# using 2nd idea:
+
+
+class Solution(object):
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root: return []
+        res, stack = [], [root] # using two stacks
+        ans = []
+        while stack:
+            
+            node = stack.pop()
+
+            res.append(node)
+            if node.left is not None:
+                stack.append(node.left) 
+            if node.right is not None:
+                stack.append(node.right) 
+            
+        while res:
+            
+            node = res.pop()
+            ans.append(node.val)
+            
+        return ans
