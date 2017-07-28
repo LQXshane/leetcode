@@ -25,3 +25,29 @@ class Solution(object):
                 start += 1
 
         return ans
+
+# Similarly, use the approach by awice, we can do straightforward window sliding by,
+
+class Solution(object):
+    def findAnagrams(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: List[int]
+        """
+        A = [ord(x) - ord('a') for x in p]
+        B = [ord(x) - ord('a') for x in s]
+
+        target = [0] * 26
+        for x in A:
+            target[x] += 1
+        ans = []
+        
+        window = [0] * 26
+        for i, x in enumerate(B):
+            window[x] += 1
+            if i >= len(A):
+                window[B[i - len(A)]] -= 1
+            if window == target:
+                ans += i - len(p) + 1,
+        return ans 
