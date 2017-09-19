@@ -25,3 +25,6 @@ class Solution(object):
                 size -= 1
             res.append(float(level_sum)/ N)
         return res
+
+# O(m) space, m is largest level_sum
+# O(n) time, traverse each node exactly once 
